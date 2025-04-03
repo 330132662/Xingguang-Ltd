@@ -1,0 +1,123 @@
+<html>
+ <head>
+  <style type="text/css">
+    #config-box div a.btn {
+     color: #fff;
+     text-decoration: none;
+    }
+    #config-box thead > tr > th.wdbt {
+     width: 15%;
+    }
+    #config-box thead > tr > th.wd70 {
+     width: 70%;
+    }
+    @media (max-width: 970px) {
+     #config-box thead > tr > th.wdbt {
+      width: 30%;
+     }
+     #config-box thead > tr > th.mob-none {
+      display: none;
+     }
+     #config-box tbody > tr > td.mob-none {
+      display: none;
+     }
+    }
+</style> 
+ </head>
+ <body>
+ <div id="config-box">
+  <div class="alert alert-info-light" style="margin-bottom:10px;">
+   <div style="margin-top:10px;">
+    <a href="{:addon_url('wwh/index/index')}" class="btn btn-warning" target="_blank"><i class="fa fa-home"></i> 官网首页</a>
+    <a href="https://doc.fastadmin.net/wwh" class="btn btn-info" target="_blank"><i class="fa fa-question-circle"></i> 使用文档</a>
+    <a href="addon/config?name=wwh" class="btn btn-primary btn-dialog" title="配置"><i class="fa fa-pencil"></i> 插件配置</a>
+    {if $auth->check('wwh/market/index')}
+    <a class="btn btn-danger btn-dialog" href="{:url('wwh/market/index')}" data-area='["80%","80%"]' title="{:__('营销网络')}"><i class="fa fa-map-marker"></i> {:__('营销网络')}</a>
+    {/if}
+   </div>
+  </div>
+  <div class="panel panel-default panel-intro">
+   <div class="panel-heading">
+    <ul class="nav nav-tabs">
+     <li class="active"><a href="#about" data-toggle="tab">联系信息</a></li>
+    </ul>
+   </div>
+   <div class="panel-body"> 
+    <div id="myTabContent" class="tab-content"> 
+     <div class="tab-pane fade active in" id="about"> 
+      <div class="widget-body no-padding">
+       <form id="basic-form" class="edit-form form-horizontal nice-validator n-default n-bootstrap" role="form" data-toggle="validator" method="POST" action="{:url('Admin/wwh/contact/conedit')}" novalidate="novalidate"> 
+        <input type="hidden" name="__token__" value="" /> 
+        <table class="table table-striped">
+         <thead>
+         <tr>
+          <th class="wdbt">标题</th>
+          <th class="wd70">值</th>
+          <th width="15%" class="mob-none">变量名</th>
+         </tr>
+         </thead>
+         <tbody>
+          <tr> 
+           <td>咨询热线</td>
+           <td> 
+            <div class="row"> 
+             <div class="col-sm-8 col-xs-12"> 
+              <input type="text" name="tel" value="{$data.tel|htmlentities}" class="form-control" />
+             </div>
+            </div> </td> 
+           <td class="mob-none">{literal}{$contact.tel}{/literal}</td>
+           <td></td> 
+          </tr>
+          <tr> 
+           <td>联系邮箱</td>
+           <td> 
+            <div class="row"> 
+             <div class="col-sm-8 col-xs-12"> 
+              <input type="text" name="email" value="{$data.email|htmlentities}" class="form-control" />
+             </div>
+            </div> </td> 
+           <td class="mob-none">{literal}{$contact.email}{/literal}</td>
+           <td></td> 
+          </tr>
+          <tr>
+           <td>工作时间</td>
+           <td>
+            <div class="row">
+             <div class="col-sm-8 col-xs-12">
+              <input type="text" name="time" value="{$data.time|htmlentities}" class="form-control" />
+             </div>
+            </div> </td>
+           <td class="mob-none">{literal}{$contact.time}{/literal}</td>
+           <td></td>
+          </tr>
+          <tr>
+           <td>联系地址</td>
+           <td>
+            <div class="row">
+             <div class="col-sm-8 col-xs-12">
+              <textarea name="address" class="form-control" style="height:80px;">{$data['address']}</textarea>
+             </div>
+            </div> </td>
+           <td class="mob-none">{literal}{$contact.address}{/literal}</td>
+           <td></td>
+          </tr>
+         </tbody> 
+         <tfoot> 
+          <tr> 
+           <td></td> 
+           <td> <button type="submit" class="btn btn-success btn-embossed">保存</button> </td> 
+           <td></td> 
+           <td></td> 
+          </tr> 
+         </tfoot> 
+        </table> 
+       </form> 
+      </div> 
+     </div>
+
+    </div> 
+   </div> 
+  </div>
+ </div>
+ </body>
+</html>
